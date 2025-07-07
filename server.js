@@ -7,7 +7,7 @@ require('dotenv').config();
 const app = express();
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://bookmark-frontend.vercel.app' // (nanti kalau sudah deploy)
+  'https://bookmark-frontend-bay.vercel.app' // (nanti kalau sudah deploy)
 ];
 
 app.use(cors({
