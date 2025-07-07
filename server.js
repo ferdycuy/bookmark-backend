@@ -7,24 +7,19 @@ require('dotenv').config();
 const app = express();
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://bookmark-frontend-nu.vercel.app'
+  'https://bookmark-frontend-nu.vercel.app' // (nanti kalau sudah deploy)
 ];
 
-const corsOptions = {
+app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      console.log('❌ Blocked CORS from:', origin); // Log buat debug di Railway
-      callback(new Error('Not allowed by CORS'));
+      callback(new Error('CORS Not Allowed'));
     }
   },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-};
-
-app.use(cors(corsOptions));
+  credentials: true
+}));
 
 app.use(express.json());
 app.use(cookieParser());
